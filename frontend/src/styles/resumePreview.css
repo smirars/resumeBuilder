@@ -1,0 +1,187 @@
+.resume-preview {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+  border-radius: 4px;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.resume-preview__header {
+  padding: 32px 40px;
+  color: #fff;
+}
+
+.resume-preview__header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.resume-preview__header-text {
+  flex: 1;
+}
+
+.resume-preview__photo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,0.6);
+  flex-shrink: 0;
+}
+
+.resume-preview__name {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.resume-preview__contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  opacity: 0.92;
+}
+
+.resume-preview__contact-row span::before {
+  content: '• ';
+}
+
+.resume-preview__contact-row span:first-child::before {
+  content: '';
+}
+
+.resume-preview__body {
+  padding: 28px 40px;
+}
+
+.resume-preview__section {
+  margin-bottom: 22px;
+}
+
+.resume-preview__section-title {
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+}
+
+.resume-preview__text {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.resume-preview__item {
+  margin-bottom: 12px;
+}
+
+.resume-preview__item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+.resume-preview__item-title {
+  font-weight: bold;
+  font-size: 14px;
+  color: #1e293b;
+}
+
+.resume-preview__item-date {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.resume-preview__item-sub {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.resume-preview__item-desc {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.resume-preview__item-url {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.resume-preview__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.resume-preview__chip {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid;
+  background: #f8fafc;
+}
+
+/* ── Современное (template 2) ── */
+.resume-preview--modern .resume-preview__name {
+  font-size: 30px;
+}
+
+.resume-preview--modern .resume-preview__section-title {
+  border-bottom: none;
+  border-left: 3px solid;
+  padding-bottom: 0;
+  padding-left: 10px;
+  letter-spacing: 0.5px;
+}
+
+/* ── Минималистичное (template 3) ── */
+.resume-preview--minimal .resume-preview__header {
+  background: #f8fafc !important;
+  color: #1e293b;
+  border-bottom: 4px solid;
+  padding: 28px 40px;
+}
+
+.resume-preview--minimal .resume-preview__name {
+  color: #1e293b;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.resume-preview--minimal .resume-preview__contact-row {
+  color: #64748b;
+  opacity: 1;
+  font-size: 12px;
+}
+
+.resume-preview--minimal .resume-preview__photo {
+  border-color: #e2e8f0;
+}
+
+.resume-preview--minimal .resume-preview__section-title {
+  color: #94a3b8 !important;
+  border-color: #e2e8f0 !important;
+  border-bottom-width: 1px;
+  text-transform: none;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.resume-preview--minimal .resume-preview__chip {
+  background: #f1f5f9;
+  color: #475569 !important;
+  border-color: #e2e8f0 !important;
+}

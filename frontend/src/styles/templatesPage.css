@@ -1,0 +1,201 @@
+.templates-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.templates-page__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.templates-page__title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.templates-page__subtitle {
+  font-size: 16px;
+  color: #64748b;
+}
+
+.templates-page__loader {
+  text-align: center;
+  color: #64748b;
+  font-size: 16px;
+  margin-top: 80px;
+}
+
+.templates-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+.templates-page__card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.templates-page__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.templates-page__preview {
+  height: 200px;
+  background: #f8fafc;
+  overflow: hidden;
+}
+
+.templates-page__preview-header {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.templates-page__preview-name {
+  width: 120px;
+  height: 12px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 6px;
+}
+
+.templates-page__preview-line {
+  width: 180px;
+  height: 8px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 4px;
+}
+
+.templates-page__preview-body {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.templates-page__preview-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.templates-page__preview-label {
+  width: 60px;
+  height: 6px;
+  border-radius: 3px;
+  opacity: 0.6;
+}
+
+.templates-page__preview-text {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+}
+
+.templates-page__card-info {
+  padding: 20px;
+}
+
+.templates-page__card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.templates-page__card-desc {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.templates-page__colors {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.templates-page__color-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+}
+
+.templates-page__btn {
+  width: 100%;
+  padding: 10px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.templates-page__btn:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.templates-page__btn:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+}
+
+/* ── Современный шаблон: двухколоночное превью ── */
+.templates-page__preview-body--two-col {
+  display: flex;
+  padding: 0;
+  gap: 0;
+}
+
+.templates-page__preview-sidebar {
+  width: 38%;
+  padding: 10px 8px;
+  background: #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.templates-page__preview-main {
+  flex: 1;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Минималистичный шаблон: белый фон, тонкая цветная полоса ── */
+.templates-page__preview-header--minimal {
+  background: #fff !important;
+  border-bottom: 3px solid;
+  padding-top: 14px;
+  padding-bottom: 10px;
+}
+
+.templates-page__preview-name--dark {
+  background: #1e293b !important;
+  opacity: 0.75;
+}
+
+.templates-page__preview-line--dark {
+  background: #94a3b8 !important;
+}
+
+.templates-page__preview-label--minimal {
+  background: #cbd5e1 !important;
+}

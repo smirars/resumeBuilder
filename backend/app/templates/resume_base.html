@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: '{{ font }}', Arial, sans-serif; color: #333; font-size: 14px; line-height: 1.6; }
+
+  .header {
+    background-color: {{ color }};
+    color: white;
+    padding: 32px 40px;
+  }
+  .header h1 { font-size: 28px; font-weight: bold; margin-bottom: 8px; }
+  .contact-row { display: flex; flex-wrap: wrap; gap: 20px; font-size: 13px; opacity: 0.92; }
+  .contact-row span::before { content: "• "; }
+  .contact-row span:first-child::before { content: ""; }
+
+  .content { padding: 28px 40px; }
+
+  .section { margin-bottom: 22px; }
+  .section-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: {{ color }};
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid {{ color }};
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+  }
+
+  .item { margin-bottom: 14px; }
+  .item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; }
+  .item-title { font-weight: bold; font-size: 14px; }
+  .item-date { font-size: 12px; color: #666; white-space: nowrap; margin-left: 12px; }
+  .item-company { color: {{ color }}; font-size: 13px; margin-bottom: 4px; }
+  .item-desc { color: #555; font-size: 13px; margin-top: 4px; }
+
+  .skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-chip {
+    background: #f0f4f8;
+    color: {{ color }};
+    border: 1px solid #dde4ec;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  .photo-block { text-align: center; margin-bottom: 12px; }
+  .photo-block img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid {{ color }}; }
+</style>
+</head>
+<body>
+
+{% set ns = namespace(photo_url='') %}
+{% for block in blocks %}
+  {% if block.visible and block.block_type == 'photo' and block.content.get('url') %}
+    {% set ns.photo_url = block.content.get('url') %}
+  {% endif %}
+{% endfor %}
+
+{% for block in blocks %}
+{% if block.visible and block.block_type == 'contacts' %}
+<div class="header">
+  <table style="width:100%;border-collapse:collapse;">
+    <tr>
+      <td style="vertical-align:middle;">
+        <h1>{{ block.content.get('name', '') }}</h1>
+        <div class="contact-row">
+          {% if block.content.get('email') %}<span>{{ block.content.get('email') }}</span>{% endif %}
+          {% if block.content.get('phone') %}<span>{{ block.content.get('phone') }}</span>{% endif %}
+          {% if block.content.get('location') %}<span>{{ block.content.get('location') }}</span>{% endif %}
+          {% if block.content.get('website') %}<span>{{ block.content.get('website') }}</span>{% endif %}
+        </div>
+      </td>
+      {% if ns.photo_url %}
+      <td style="width:100px;text-align:right;vertical-align:middle;">
+        <div style="width:88px;height:88px;border-radius:50%;background-image:url('{{ ns.photo_url }}');background-size:cover;background-position:center center;border:3px solid rgba(255,255,255,0.55);display:inline-block;"></div>
+      </td>
+      {% endif %}
+    </tr>
+  </table>
+</div>
+{% endif %}
+{% endfor %}
+
+<div class="content">
+
+{% for block in blocks %}
+{% if block.visible and block.block_type != 'contacts' and block.block_type != 'photo' %}
+
+  {% if block.block_type == 'summary' %}
+  <div class="section">
+    <div class="section-title">О себе</div>
+    <p>{{ block.content.get('text', '') }}</p>
+  </div>
+
+  {% elif block.block_type == 'experience' %}
+  <div class="section">
+    <div class="section-title">Опыт работы</div>
+    {% for item in block.content.get('items', []) %}
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">{{ item.get('position', '') }}</span>
+        <span class="item-date">{{ item.get('start_date', '') }} — {{ item.get('end_date') or 'н.в.' }}</span>
+      </div>
+      <div class="item-company">{{ item.get('company', '') }}</div>
+      {% if item.get('description') %}
+      <div class="item-desc">{{ item.get('description') }}</div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+  {% elif block.block_type == 'education' %}
+  <div class="section">
+    <div class="section-title">Образование</div>
+    {% for item in block.content.get('items', []) %}
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">{{ item.get('institution', '') }}</span>
+        <span class="item-date">{{ item.get('year', '') }}</span>
+      </div>
+      <div class="item-company">{{ item.get('degree', '') }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% elif block.block_type == 'skills' %}
+  <div class="section">
+    <div class="section-title">Навыки</div>
+    <div class="skills-wrap">
+      {% for skill in block.content.get('items', []) %}
+      <span class="skill-chip">{{ skill }}</span>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% elif block.block_type == 'languages' %}
+  <div class="section">
+    <div class="section-title">Языки</div>
+    <div class="skills-wrap">
+      {% for lang in block.content.get('items', []) %}
+      <span class="skill-chip">{{ lang }}</span>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% elif block.block_type == 'projects' %}
+  <div class="section">
+    <div class="section-title">Проекты</div>
+    {% for item in block.content.get('items', []) %}
+    <div class="item">
+      <div class="item-title">{{ item.get('name', '') }}</div>
+      {% if item.get('description') %}
+      <div class="item-desc">{{ item.get('description') }}</div>
+      {% endif %}
+      {% if item.get('url') %}
+      <div style="font-size:12px;color:#888;margin-top:2px;">{{ item.get('url') }}</div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+  {% endif %}
+{% endif %}
+{% endfor %}
+
+</div>
+</body>
+</html>

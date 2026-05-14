@@ -1,0 +1,137 @@
+.block-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.block-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.block-form__label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.block-form__input {
+  padding: 7px 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #1e293b;
+  background: #fff;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+
+.block-form__input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.block-form__input--error {
+  border-color: #ef4444 !important;
+}
+
+.block-form__input--error:focus {
+  border-color: #ef4444 !important;
+}
+
+.block-form__textarea {
+  padding: 7px 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #1e293b;
+  background: #fff;
+  resize: vertical;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+
+.block-form__textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.block-form__item {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.block-form__item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.block-form__item-num {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.block-form__remove-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 13px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.block-form__remove-btn:hover {
+  color: #ef4444;
+  background: #fef2f2;
+}
+
+.block-form__add-btn {
+  background: none;
+  border: 1px dashed #cbd5e1;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 13px;
+  color: #64748b;
+  width: 100%;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.block-form__add-btn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.block-form__tag-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.block-form__tag-row {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.block-form__tag-input-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.block-form__error-msg {
+  font-size: 11px;
+  color: #ef4444;
+  margin-top: 2px;
+}
