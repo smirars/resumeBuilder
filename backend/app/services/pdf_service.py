@@ -1,10 +1,9 @@
 import os
+import shutil
 import tempfile
 import pdfkit
 from jinja2 import Environment, FileSystemLoader
 from app.models.resume import Resume
-
-import shutil
 
 _TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "..", "templates")
 
