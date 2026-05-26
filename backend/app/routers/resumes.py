@@ -1,13 +1,23 @@
 from datetime import datetime
+
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session, joinedload
+
 from app.database import get_db
+from app.models.block import TemplateBlock
 from app.models.resume import Resume
 from app.models.template import Template
-from app.models.block import TemplateBlock
-from app.schemas.resume import ResumeCreate, ResumeUpdate, ResumeResponse
+from app.schemas.resume import ResumeCreate, ResumeResponse, ResumeUpdate
+from app.services.cache import cache_delete, cache_get, cache_set
 
 router = APIRouter(prefix="/api/resumes", tags=["resumes"])
+
+_TTL = 300
+
+
+def _resume_key(resume_id: str) -> str:
+    return f"resumes:{resume_id}"
 
 
 @router.post("/", response_model=ResumeResponse, status_code=201)
@@ -47,9 +57,16 @@ def create_resume(payload: ResumeCreate, db: Session = Depends(get_db)):
 
 @router.get("/{resume_id}", response_model=ResumeResponse)
 def get_resume(resume_id: str, db: Session = Depends(get_db)):
+    key = _resume_key(resume_id)
+    cached = cache_get(key)
+    if cached is not None:
+        return cached
+
     resume = db.query(Resume).filter(Resume.id == resume_id).first()
     if not resume:
         raise HTTPException(status_code=404, detail="Resume not found")
+
+    cache_set(key, jsonable_encoder(resume), ttl=_TTL)
     return resume
 
 
@@ -69,4 +86,6 @@ def update_resume(resume_id: str, payload: ResumeUpdate, db: Session = Depends(g
     resume.updated_at = datetime.utcnow()
     db.commit()
     db.refresh(resume)
+
+    cache_delete(_resume_key(resume_id))
     return resume
